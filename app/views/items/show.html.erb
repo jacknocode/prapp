@@ -1,0 +1,4 @@
+<h2><%= @item.name %></h2>
+<p><%= link_to '[編集する]',
+    edit_category_item_path(params[:category_id],params[:id]),
+    class: 'command'%></p>

@@ -1,29 +1,4 @@
-<h2><%= @category.name %></h2>
-<p><%= simple_format @category.name %></p>
-
-<h3>Items</h3>
-<% if @category.items.any? %>
-<ul>
-<% @category.items.each do |item| %>
-<li>
-  <%= link_to item.name, category_item_path(@category, item) %>
-  <%= link_to '[編集する]',
-    edit_category_item_path(@category,item),
-    class: 'command'%>
-  <%= link_to '[x]',
-    category_item_path(@category, item),
-    method: :delete,
-    class: 'command',
-    data: { confirm: 'Sure?' } %>
-</li>
-<% end %>
-</ul>
-<% end %>
-<%= form_for([@category, @category.items.build]) do |f| %>
-<p>
-  <%= f.text_field :name %>
-</p>
-<p>
-  <%= f.submit %>
-</p>
-<% end %>
+<div class="show_container">
+  <h2>Name: <%= @category.name %></h2>
+  <h2>ID: <%= @category.id %></h2>
+</div>

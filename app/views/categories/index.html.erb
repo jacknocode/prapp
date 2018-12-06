@@ -1,10 +1,29 @@
 <% provide(:title, "カテゴリ一覧") %>
-<ul>
-<% @categories.each do |category| %>
-<li>
-<%= link_to category.name, category_path(category) %>
-<%= link_to '[Edit]', edit_category_path(category), class: 'command' %>
-<%= link_to '[x]',category_path(category),method: :delete,class: 'command',data: { confirm: 'Sure?' } %>
-</li>
-<% end %>
-</ul>
+<div class="main-table-front">
+  <%= link_to image_tag('btn_kensyu.png', class: 'btn_Add'), new_category_path %>
+  <div class="category_space"></div>
+  <%= form_tag(categories_path,:method => 'get' ,class: "serchform") do %>
+  <%= text_field_tag :search,params[:search],:placeholder => "カテゴリー入力" %>
+  <%= submit_tag '検索', :name => nil ,class: "btn"%>
+  <% end %>
+</div>
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Edit</th>
+      <th class="option_th">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.id %></td>
+        <td><%= link_to category.name, category_path(category) %></td>
+        <td><%= link_to '[Edit]', edit_category_path(category), class: 'command' %></td>
+        <td><%= link_to '[x]',category_path(category),method: :delete,class: 'command',data: { confirm: 'Sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</tabel>

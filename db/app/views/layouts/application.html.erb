@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Myblog</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="header">
+      <h1><%= yield(:title) %></h1>
+    </div>
+    <div class="sidebar">
+      <ul>
+        <li><h2><%= link_to 'カテゴリマスタ', root_path %></h2></li>
+      <ul>
+    </div>
+    <div class="main">
+    <div class="main-table-front">
+      <%= link_to image_tag('btn_kensyu.png', class: 'btn_Add'), new_category_path %>
+    </div>
+    <%= yield %>
+    </div>
+  </body>
+</html>

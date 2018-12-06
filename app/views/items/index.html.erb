@@ -1,12 +1,29 @@
-<h2>
-  <%= link_to 'Add New', new_category_path, class: 'header-menu' %>
-  ALL Items
-</h2>
-<ul>
-<% @category.each do |item| %>
-<li>
-<%= link_to item.name %>
-
-</li>
+<% provide(:title, "アイテム一覧") %>
+<div class="main-table-front">
+      <%= link_to image_tag('btn_kensyu.png', class: 'btn_Add'), new_item_path %>
+      <%= form_tag(items_path,:method => 'get' ,class: "serchform") do %>
+  <%= select_tag :category, options_for_select(Category.all.map {|c| [c.name, c.id]}) %>
+   <%= text_field_tag :search,params[:search],:placeholder => "アイテム入力" %>
+ <%= submit_tag '検索', :name => nil ,class: "btn"%>
+ <% end %>
+</div>
+<table border="1">
+<thead>
+<tr>
+  <th>Code</th>
+  <th>Name</th>
+  <th class="category_th">category</th>
+  <th class="category_th">category_id</th>
+</tr>
+</thead>
+<tbody>
+<% @items.each do |item| %>
+<tr>
+  <td><%= item.code %></td>
+  <td><%= link_to item.name, item_path(item) %></td>
+  <td><%= item.category.name %></td>
+  <td><%= item.category_id %></td>
+</tr>
 <% end %>
-</ul>
+</tbody>
+</tabel>

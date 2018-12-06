@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
 
   def index
-    @category = Item.all
+    @items = params[:search] ? Item.search(params[:search]) : Item.all
+    @items = @items.where(category: Category.find(params[:category])) if params[:category]
   end
 
   def new
@@ -9,18 +10,16 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @category = Category.find(params[:category_id])
-    @item =  @category.items.create(item_params)
+    @item = Item.new(item_params)
     if @item.save
-    redirect_to category_path(@category)
+    redirect_to item_path(@item)
     else
       render 'new'
     end
   end
 
   def show
-    @category = Category.find(params[:category_id])
-    @item = @category.items.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   def edit
@@ -29,23 +28,20 @@ class ItemsController < ApplicationController
 
   def update
     # render plain: params[:item].inspect
-    @item = Item.find(params[:id])
     if    @item.update(item_params)
-    redirect_to category_item_path
+    redirect_to item_path
     else
       render 'edit'
     end
   end
 
  def destroy
-    @category = Category.find(params[:category_id])
-    @item = @category.items.find(params[:id])
     @item.destroy
-    redirect_to category_path(@category)
+    redirect_to items_path
   end
 
   private
     def item_params
-      params.require(:item).permit(:name,:category_id)
+      params.require(:item).permit(:name,:category_id,:code)
     end
 end

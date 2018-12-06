@@ -13,13 +13,18 @@
 ActiveRecord::Schema.define(version: 2018_11_14_063718) do
 
   create_table "categories", force: :cascade do |t|
+    t.string "name", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "items", force: :cascade do |t|
+    t.string "name", limit: 255, null: false
+    t.string "code", limit: 11, null: false
+    t.integer "category_id", limit: 11
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_items_on_category_id"
   end
 
 end

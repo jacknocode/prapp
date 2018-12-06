@@ -1,0 +1,9 @@
+<h2>Edit Item</h2>
+<%= form_for @item, :url => {:action => :update} do |f| %>
+<p>
+  <%= f.text_field :name, placeholder: 'enter name' %>
+</p>
+<p>
+  <%= f.submit %>
+</p>
+<% end %>

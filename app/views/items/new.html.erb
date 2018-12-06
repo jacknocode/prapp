@@ -1,2 +1,34 @@
-<h2>Add New Item</h2>
-<%= render 'form' %>
+<% provide(:title, "アイテム作成") %>
+<%= form_for @item do |f| %>
+ <% if @item.errors.any? %>
+ <div id="error_explanation">
+   <h2><%= pluralize(@item.errors.count, "error") %> エラーの為保存出来ません</h2>
+
+   <ul>
+   <% @item.errors.full_messages.each do |message| %>
+     <li><%= message %></li>
+   <% end %>
+   </ul>
+ </div>
+ <% end %>
+
+ <div class="form-group mt_50">
+   <%= f.label :code %>
+   <%= f.text_field :code,placeholder: "codeを入力して下さい", class: 'form-control' %>
+ </div>
+
+ <div class="form-group mt_50">
+   <%= f.label :商品名 %>
+   <%= f.text_field :name,placeholder: "商品名を入力して下さい", class: 'form-control' %>
+ </div>
+
+ <p><%= f.label :カテゴリー %></p>
+
+<div>
+ <%= f.collection_select(:category_id,Category.all,:id,:name,:prompt => true,class: "form-control")%>
+</div>
+
+<div class="form flex">
+ <%= f.submit class: "btn btn-primary active" %>
+</div>
+ <% end %>

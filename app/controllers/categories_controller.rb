@@ -2,7 +2,8 @@ class CategoriesController < ApplicationController
   # Convention over Configuration (CoC)
 
   def index
-    @categories = Category.all.order(created_at: 'asc')
+    # @categories = Category.all.order(created_at: 'asc')
+    @categories = Category.search(params[:search])
   end
 
   def show
@@ -36,7 +37,7 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update(category_params)
-      redirect_to categories_path,
+      redirect_to categories_path
     else
       render 'edit'
     end

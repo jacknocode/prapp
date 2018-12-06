@@ -1,0 +1,12 @@
+<h2>
+  <%= link_to 'Add New', new_category_path, class: 'header-menu' %>
+  ALL Items
+</h2>
+<ul>
+<% @category.each do |item| %>
+<li>
+<%= link_to item.name %>
+
+</li>
+<% end %>
+</ul>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_063718) do
+ActiveRecord::Schema.define(version: 2018_12_19_030354) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -25,6 +25,36 @@ ActiveRecord::Schema.define(version: 2018_11_14_063718) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_items_on_category_id"
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.string "name", limit: 255, null: false
+    t.string "code", limit: 11, null: false
+    t.integer "total_price", limit: 8, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "item_id"
+    t.index ["item_id"], name: "index_order_details_on_item_id"
+    t.index ["user_id"], name: "index_order_details_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "code", limit: 11, null: false
+    t.integer "order_content", limit: 8, null: false
+    t.string "note", limit: 140, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "order_id", limit: 11
+    t.index ["order_id"], name: "index_orders_on_order_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name", limit: 255, null: false
+    t.string "code", limit: 11, null: false
+    t.string "email", limit: 50, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

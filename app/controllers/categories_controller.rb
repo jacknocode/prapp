@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     if @category.save
       # redirect
-      redirect_to categories_path
+      redirect_to categories_path(@category)
     else
       # render plain: @post.errors.inspect
       render 'new'
@@ -51,7 +51,7 @@ class CategoriesController < ApplicationController
 
   private
     def category_params
-      params.require(:category).permit(:name)
+      params.require(:category).permit(:name,:code)
     end
 
 end

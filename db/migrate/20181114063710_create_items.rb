@@ -4,6 +4,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string :name,limit: 255,null: false
       t.string :code,limit: 11,null: false
       t.string :note,limit: 140,null: false
+      t.integer :price, limit: 8,null: false
       t.references :category, foreign_key: true,limit: 11
 
       t.timestamps

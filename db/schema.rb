@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_030354) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", limit: 255, null: false
+    t.string "code", limit: 11, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -21,6 +22,8 @@ ActiveRecord::Schema.define(version: 2018_12_19_030354) do
   create_table "items", force: :cascade do |t|
     t.string "name", limit: 255, null: false
     t.string "code", limit: 11, null: false
+    t.string "note", limit: 140, null: false
+    t.integer "price", limit: 8, null: false
     t.integer "category_id", limit: 11
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,6 +33,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_030354) do
   create_table "order_details", force: :cascade do |t|
     t.string "name", limit: 255, null: false
     t.string "code", limit: 11, null: false
+    t.integer "order_content", limit: 8, null: false
     t.integer "total_price", limit: 8, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -41,7 +45,6 @@ ActiveRecord::Schema.define(version: 2018_12_19_030354) do
 
   create_table "orders", force: :cascade do |t|
     t.string "code", limit: 11, null: false
-    t.integer "order_content", limit: 8, null: false
     t.string "note", limit: 140, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

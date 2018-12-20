@@ -13,7 +13,7 @@
   <th>Code</th>
   <th>Name</th>
   <th class="category_th">category</th>
-  <th class="category_th">category_id</th>
+  <th class="category_th">price</th>
 </tr>
 </thead>
 <tbody>
@@ -22,7 +22,7 @@
   <td><%= item.code %></td>
   <td><%= link_to item.name, item_path(item) %></td>
   <td><%= item.category.name %></td>
-  <td><%= item.category_id %></td>
+  <td><%= item.price %></td>
 </tr>
 <% end %>
 </tbody>

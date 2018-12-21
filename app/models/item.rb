@@ -5,11 +5,13 @@ class Item < ApplicationRecord
 
   scope :search, ->(parameter) do
     result = Item
-    parameter.split.each do |search|
+    parameters = parameter.split(/[[:blank:]]+/)
+    parameters.each do |search|
       result = result.where(['name Like ? or note Like ?',"%#{search}%","%#{search}%"])
     end
     result
   end
+
 end
 
 #keywordおろしてきて

@@ -1,3 +1,30 @@
 <% provide(:title, "ユーザー") %>
-
-
+<div class="main-table-front">
+      <%= link_to image_tag('btn_kensyu.png', class: 'btn_Add'), new_user_path %>
+      <%= form_tag(users_path,:method => 'get' ,class: "serchform") do %>
+   <%= text_field_tag :search,params[:search],:placeholder => "ユーザー入力" %>
+ <%= submit_tag '検索', :name => nil ,class: "btn"%>
+ <% end %>
+</div>
+<table border="1">
+<thead>
+<tr>
+  <th>Code</th>
+  <th class="category_th">ID</th>
+  <th>name</th>
+  <th>email</th>
+  <th class="category_th">[x]</th>
+</tr>
+</thead>
+<tbody>
+<% @users.each do |user| %>
+<tr>
+  <td><%= user.code %></td>
+  <td><%= user.id %></td>
+  <td><%= user.name %></td>
+  <td><%= user.email %></td>
+  <td><%= link_to '[x]',user_path(user),method: :delete,class: 'command',data: { confirm: 'Sure?' } %></td>
+</tr>
+<% end %>
+</tbody>
+</tabel>

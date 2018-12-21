@@ -1,4 +1,3 @@
 class User < ApplicationRecord
-  belongs_to :Orderdetail
-  belongs_to :Order
+  has_many :Order
 end

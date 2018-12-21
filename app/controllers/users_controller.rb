@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    @user = User.all
+    @users = User.all
   end
 
   def new
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-    redirect_to user_path(@user)
+    redirect_to users_path(@user)
     else
       render 'new'
     end
@@ -35,13 +35,20 @@ class UsersController < ApplicationController
   end
 
  def destroy
+    @user = User.find(params[:id])
     @user.destroy
     redirect_to users_path
   end
 
   private
     def user_params
-      params.require(:user)
+      params.require(:user).permit(:name,:code,:email)
     end
 end
+
+
+
+
+
+
 

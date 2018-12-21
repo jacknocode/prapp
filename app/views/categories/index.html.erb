@@ -14,6 +14,7 @@
       <th>Name</th>
       <th>Edit</th>
       <th class="option_th">Delete</th>
+      <th class="option_th">count</th>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +24,7 @@
         <td><%= link_to category.name, category_path(category) %></td>
         <td><%= link_to '[Edit]', edit_category_path(category), class: 'command' %></td>
         <td><%= link_to '[x]',category_path(category),method: :delete,class: 'command',data: { confirm: 'Sure?' } %></td>
+        <td><%= category.items.count %></td>
       </tr>
     <% end %>
   </tbody>

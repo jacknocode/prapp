@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   def index
     @items = params[:search] ? Item.search(params[:search]) : Item.all.order(created_at: "DESC")
     @items = @items.where(category: Category.find(params[:category])) if params[:category]
+    # Item.all.order(created_at: "DESC")
   end
 
   def new

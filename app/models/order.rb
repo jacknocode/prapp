@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  has_many :orderdetail
+  has_many :orderdetails,dependent: :destory
   belongs_to :user
-  has_many :items through: :orderdetail
+  has_many :items through: :orderdetails
 end

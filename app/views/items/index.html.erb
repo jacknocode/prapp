@@ -2,7 +2,7 @@
 <div class="main-table-front">
       <%= link_to image_tag('btn_kensyu.png', class: 'btn_Add'), new_item_path %>
       <%= form_tag(items_path,:method => 'get' ,class: "serchform") do %>
-  <%= select_tag :category, options_for_select(Category.all.map {|c| [c.name, c.id]}),:include_blank => true %>
+  <%= select_tag :category, options_for_select(Category.all.map {|c| [c.name, c.id]}),:prompt => "すべて"%>
 
    <%= text_field_tag :search,params[:search],:placeholder => "アイテム入力" %>
  <%= submit_tag '検索', :name => nil ,class: "btn"%>
